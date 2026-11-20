@@ -1,10 +1,10 @@
+![PalaRez StreamCam Banner](design/palarez_hero_banner.png)
+
 # PalaRez StreamCam (`palarez-cam`)
 
 **Zero-Gradle Android Pro Camera2 + 9-Sensor Cyber-Flora Sanctuary Glass HUD + LAN HTTP-FLV Pull & Direct YouTube Live RTMP/RTMPS + On-Device Audio Mixer + Timelapse Platform** for Android 9–16+ (`minSdk 28`, `targetSdk 35`).
 
 Run **100% standalone on an Android phone** streaming directly to YouTube Live over TLS (`rtmps://`), or pull a clean hardware-encoded H.264 + AAC mezzanine feed over LAN (`http://<PHONE_IP>:8890/stream.flv`) into `go2rtc`, `FFmpeg`, OBS, or MediaMTX.
-
-![PalaRez StreamCam Cockpit Blueprint](design/palarez_ui_blueprint.png)
 
 ---
 
@@ -26,6 +26,8 @@ You do **not** need Android Studio, Gradle, or a computer to use PalaRez StreamC
 ---
 
 ## Real-World Use-Case Cookbook (Sanitized Tested Recipes)
+
+![Three Ways to Deploy PalaRez StreamCam](design/palarez_workflow_modes.png)
 
 Every recipe below mirrors a real workflow verified during testing, using RFC 5737 example IP `192.0.2.10` and sample placeholders (`xxxx-xxxx-xxxx-xxxx-xxxx`). Drop-in starter configs live in [`examples/`](examples/).
 
@@ -155,6 +157,9 @@ Probes both `CameraManager.getCameraIdList()` and auxiliary/physical IDs (`0..4`
 - **Pipeline-Restarting Controls**: Changing `preset`, `width` + `height`, `fps` (`5..60`, default `15`), or `camera_id` cleanly restarts the Camera2 + OpenGL + encoder pipeline (and automatically resumes RTMP or HTTP-FLV if active). Standalone updates to `video_bitrate_kbps` (`300..12000`, default `800`), `audio_bitrate_kbps` (`32..256`, default `96`), or `keyframe_sec` (`1..10`, default `2`) take effect on the next encoder start or pipeline restart.
 
 ### 2. LED Grow-Light Anti-Strobe Filter (`anti_flicker` / `anti_flicker_mode`)
+
+![LED Grow-Light Anti-Strobe Architecture](design/palarez_antistrobe_diagram.png)
+
 High-PPFD horticultural LED fixtures driven by 120 Hz rectified AC or PWM dimmers often cause severe rolling-shutter horizontal banding on CMOS phone sensors. Four modes are supported in **PRO OPTICS** and via `POST /api/control`:
 
 | Mode | Camera2 AE Antibanding | GPU Temporal Ring (`FS_TMIX5`) | Extra VRAM | Recommended Use |
@@ -192,6 +197,18 @@ All 9 environmental, optical, time, and inertial metrics are structured under `p
 - **OEM Sensor Noise Filtering**: By default (`raw_sensors: false`), `TelemetryCollector` skips one-shot triggers and noisy vendor gesture/SAR/proximity sensors (`flatup`, `stowed`, `capsense`, etc.). Enable `raw_sensors: true` via `/api/control` (or the **SENSORS & RTMP** tab) and query `GET /api/telemetry?raw_sensors=1` to inspect all raw hardware sensor arrays under `sensors`.
 
 ### 5. Cyber-Flora Sanctuary Glass HUD (`HudGlRenderer`) & OPSEC Defaults
+
+![Live 1080p Sanctuary Glass HUD Anatomy](design/palarez_hud_anatomy.png)
+
+<details>
+<summary><b>View On-Phone 3-Tab Cockpit UI Blueprint</b></summary>
+
+<p align="center">
+  <img src="design/palarez_ui_blueprint.png" alt="PalaRez StreamCam Cockpit Blueprint" width="380" />
+</p>
+
+</details>
+
 - **3 HUD Profiles (`hud_mode`)**:
   - `sanctuary_card` *(default)*: 4-corner emerald reticles + top-right glowing status/FPS/callsign/clock pill + bottom-left translucent dark-emerald glass card ( atmospheric row, inertial/compass row, optional GPS row, and inset camera/audio footer).
   - `minimal_pill`: 4-corner reticles + top-right status/callsign/clock pill only.

@@ -336,7 +336,18 @@ Point **Companion Archive URL** in Tab 3 (or `archive_url` in `POST /api/control
 
 ---
 
-## Build & Install from Source
+## Build & Install from Source (Why Zero Gradle?)
+
+Unlike typical Android Studio apps that depend on Gradle daemons, Maven caches, AndroidX/Jetpack, and dozens of opaque transitive libraries, `palarez-cam` compiles **100% offline in ~5 seconds** using 5 direct Android SDK commands (`aapt2` → `javac --release 11` → `d8` → `zipalign` → `apksigner`) in [`build_apk.sh`](build_apk.sh):
+
+| Dimension | Typical Gradle Camera App | `palarez-cam` Zero-Gradle Build |
+|---|---|---|
+| **APK Size & Compatibility** | `15 – 50 MB` (often split by CPU ABI) | **`113 KB` single universal Pure-DEX APK** (`arm64` / `armv7` / `x86_64`) |
+| **Clean Build Speed** | `30s – 5+ min` + heavy JVM daemon (`1–4 GB` RAM) | **`~5 seconds`** clean build, zero daemon |
+| **Dependencies & Auditability** | 50–200+ Maven/AAR packages | **`0` third-party libraries** — all runtime code lives in **9 readable `.java` files** |
+| **Offline & Long-Term Durability** | Breaks across AGP/Gradle/Kotlin upgrades | **100% offline** with standard Java 11 + Android SDK CLI tools |
+
+> Read or share the full standalone breakdown: **[GitHub Gist — Why `palarez-cam` Uses a Zero-Gradle Android Build](https://gist.github.com/chieftechnicalwizard/6bcc129dc14e9a451b1d2869707f51e0)**
 
 Requires **JDK 11+** (e.g., OpenJDK 17/21), **Python 3**, `zip`, and **Android SDK Platform 35 + Build-Tools `35.0.0`** (`build_apk.sh` auto-detects `ANDROID_HOME`, `ANDROID_SDK_ROOT`, `~/.local/share/android-sdk`, `~/Android/Sdk`, `~/Library/Android/sdk`, and `/opt/android-sdk`):
 

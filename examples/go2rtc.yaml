@@ -1,0 +1,12 @@
+# Drop-in go2rtc.yaml snippet to pull a clean hardware-encoded 1080p/2.5K feed
+# from PalaRez StreamCam into go2rtc, Home Assistant, OBS, or FFmpeg.
+#
+# Replace 192.0.2.10 with your phone's LAN IP (shown in the app's top bar).
+# Tip: use `?clean=1` to omit the phone HUD when your hub renders its own overlay,
+# or omit `?clean=1` to keep the phone's built-in Sanctuary Glass HUD.
+
+streams:
+  palarez_cam1:
+    - "http://192.0.2.10:8890/stream.flv?clean=1"
+  palarez_cam1_hud:
+    - "http://192.0.2.10:8890/stream.flv"

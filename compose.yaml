@@ -1,0 +1,23 @@
+# Optional LAN Companion Archive, Phone Registry & QR APK Host (:8895).
+# Note: `palarez-cam.apk` runs 100% standalone on the Android phone (direct
+# YouTube Live RTMP/RTMPS + phone :8890 HTTP/FLV/MJPEG/API + mDNS) with zero
+# container required. Deploy this stack only if you want browser QR APK installs,
+# centralized `/api/phones` discovery, or persistent telemetry/timelapse archival.
+
+services:
+  palarez-companion:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: palarez-companion
+    restart: unless-stopped
+    # On Linux, host networking lets the Companion Hub observe real phone LAN IPs.
+    # On macOS / Windows Docker Desktop, replace `network_mode: host` with:
+    # ports:
+    #   - "8895:8895"
+    network_mode: host
+    volumes:
+      - palarez_state:/var/lib/palarez
+
+volumes:
+  palarez_state:

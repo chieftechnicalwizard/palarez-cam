@@ -1,0 +1,16 @@
+# Build & signing keys / runtime archives (never commit private keys, OAuth tokens, or YouTube stream keys)
+keystore/
+*.jks
+*.keystore
+.storepass
+output/
+data/
+android_app/build/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+youtube_token.json
+client_secret.json
+.DS_Store

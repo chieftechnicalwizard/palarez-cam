@@ -1,0 +1,26 @@
+# Example Home Assistant configuration.yaml snippet to push an external
+# room hygrometer + thermometer + local QNH barometric pressure into the
+# PalaRez StreamCam live HUD every 60 seconds (great for phones without a
+# built-in hardware humidity sensor).
+#
+# Replace 192.0.2.10 and sensor entity IDs with your own values.
+
+rest_command:
+  palarez_push_env:
+    url: "http://192.0.2.10:8890/api/control"
+    method: POST
+    content_type: "application/json"
+    payload: >
+      {
+        "external_humidity_pct": {{ states('sensor.greenhouse_humidity') | float(0) }},
+        "external_temp_c": {{ states('sensor.greenhouse_temperature_c') | float(22) }},
+        "sea_level_hpa": {{ states('sensor.local_qnh_hpa') | float(1013.25) }}
+      }
+
+automation:
+  - alias: "Push Greenhouse Sensors to PalaRez StreamCam HUD"
+    trigger:
+      - platform: time_pattern
+        minutes: "/1"
+    action:
+      - service: rest_command.palarez_push_env

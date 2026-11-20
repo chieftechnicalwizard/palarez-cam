@@ -2,6 +2,8 @@
 
 # PalaRez StreamCam (`palarez-cam`)
 
+<a href="https://www.shekinahshine.org/?donate=paypal"><img src="docs/badges/paypal-donate-pill.svg" alt="Donate via PayPal" height="22" /></a>
+
 **Zero-Gradle Android Pro Camera2 + 9-Sensor Cyber-Flora Sanctuary Glass HUD + LAN HTTP-FLV Pull & Direct YouTube Live RTMP/RTMPS + On-Device Audio Mixer + Timelapse Platform** for Android 9–16+ (`minSdk 28`, `targetSdk 35`).
 
 Run **100% standalone on an Android phone** streaming directly to YouTube Live over TLS (`rtmps://`), or pull a clean hardware-encoded H.264 + AAC mezzanine feed over LAN (`http://<PHONE_IP>:8890/stream.flv`) into `go2rtc`, `FFmpeg`, OBS, or MediaMTX.
@@ -401,6 +403,21 @@ All 11 tracks of the *Honey Wax Tree Farm (Original v1.0)* album were streamed s
 * **Stream buffers or drops frames on slow Wi-Fi**: Switch the preset in **CAPTURE & LIVE** from `800k` to **`Cellular Relief 1080p15 (480k)`**, or verify your Wi-Fi uplink sustains at least `1.5x` the chosen video + audio bitrate.
 * **YouTube Studio shows "No Data"**: Tap **Test Ingest (Dry-Run)** in **SENSORS & RTMP** to verify DNS, TLS, and RTMP `connect` reachability, and double-check that your stream key matches the active YouTube Studio broadcast.
 * **Android says "App not installed (package conflicts)" when upgrading**: Prebuilt GitHub Release APKs and self-built `./build_apk.sh` APKs use different signing keys. Uninstall the previous copy once before switching between a Release APK and a self-compiled build.
+
+---
+
+## Sponsors & Donations
+
+Sponsorship and donations support Shekinah Shine maintenance, sanctuary groundskeeping, 24/7 broadcast infrastructure, and open-source development.
+
+<p>
+  <a href="https://www.shekinahshine.org/?donate=paypal"><img src="docs/badges/paypal-donate-pill.svg" alt="Donate via PayPal" height="24" align="absmiddle" /></a> &nbsp;·&nbsp;
+  <a href="https://www.shekinahshine.org/?donate=paypal"><img src="docs/badges/icon-paypal.svg" width="16" height="16" align="absmiddle" alt="" /> PayPal Donate (Shekinah Shine)</a> &nbsp;·&nbsp;
+  <a href="https://www.shekinahshine.org/?donate=cashapp"><img src="docs/badges/icon-cashapp.svg" width="16" height="16" align="absmiddle" alt="" /> Cash App</a> &nbsp;·&nbsp;
+  <a href="https://www.shekinahshine.org/?donate=venmo"><img src="docs/badges/icon-venmo.svg" width="16" height="16" align="absmiddle" alt="" /> Venmo</a> &nbsp;·&nbsp;
+  <a href="https://github.com/sponsors/chieftechnicalwizard"><img src="docs/badges/icon-github-sponsors.svg" width="16" height="16" align="absmiddle" alt="" /> GitHub Sponsors</a> &nbsp;·&nbsp;
+  <a href="https://www.shekinahshine.org/"><img src="docs/badges/icon-shekinah.svg" width="16" height="16" align="absmiddle" alt="" /> Shekinah Shine Website</a>
+</p>
 
 ---
 

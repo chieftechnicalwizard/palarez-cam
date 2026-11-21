@@ -423,4 +423,4 @@ Sponsorship and donations support Shekinah Shine maintenance, sanctuary groundsk
 
 ## License
 
-Released under the [MIT License](LICENSE).
+Released under the [Apache License 2.0](LICENSE) — see [`NOTICE`](NOTICE).
